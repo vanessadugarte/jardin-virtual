@@ -17,14 +17,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {HiShoppingCart} from "react-icons/hi";
 
 const drawerWidth = 240;
-const navItems = ['Inicio', 'Categorías', 'Contacto'];
 const Navbar = (props) => {
     const {window} = props;
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [cartQuantity, setCartQuantity] = useState(0)
+    const [cartQuantity, setCartQuantity] = useState(3)
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
+
+    const addItem = () => {
+        setCartQuantity(cartQuantity + 1)
+    }
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{textAlign: 'center'}}>
@@ -33,23 +36,30 @@ const Navbar = (props) => {
             </Typography>
             <Divider/>
             <List>
-                {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{textAlign: 'center'}}>
-                            <ListItemText primary={item}/>
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                <ListItem disablePadding>
+                    <ListItemButton href="/home" sx={{textAlign: 'center'}}>
+                        <ListItemText primary="Inicio"/>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton href="/categories" sx={{textAlign: 'center'}}>
+                        <ListItemText primary="Categorías"/>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton href="/about" sx={{textAlign: 'center'}}>
+                        <ListItemText primary="Nosotros"/>
+                    </ListItemButton>
+                </ListItem>
                 <Divider/>
                 <ListItem>
                     <ListItemButton>
                     <IconButton size="large" aria-label="show 4 new mails">
-                        <Badge badgeContent={cartQuantity} color="error">
+                        <Badge badgeContent={cartQuantity} color="error" >
                             <HiShoppingCart/>
                         </Badge>
                     </IconButton>
                     </ListItemButton>
-                    <p>Messages</p>
                 </ListItem>
             </List>
 
@@ -80,11 +90,20 @@ const Navbar = (props) => {
                        JARDÍN VIRTUAL
                     </Typography>
                     <Box sx={{display: {xs: 'none', sm: 'block'}}}>
-                        {navItems.map((item) => (
-                            <Button key={item} sx={{color: '#fff',fontSize: '1.2rem', mr:2}}>
-                                {item}
-                            </Button>
-                        ))}
+                        <Button href="/home" sx={{color: '#fff',fontSize: '1.2rem', mr:2}}>
+                            Inicio
+                        </Button>
+                        <Button href="/categories" sx={{color: '#fff',fontSize: '1.2rem', mr:2}}>
+                            Categorías
+                        </Button>
+                        <Button href="/about" sx={{color: '#fff',fontSize: '1.2rem', mr:2}}>
+                            Nosotros
+                        </Button>
+                        <IconButton size="large" aria-label="show 4 new mails" sx={{color:"white"}}>
+                            <Badge badgeContent={cartQuantity} color="error">
+                                <HiShoppingCart/>
+                            </Badge>
+                        </IconButton>
                     </Box>
                 </Toolbar>
             </AppBar>
