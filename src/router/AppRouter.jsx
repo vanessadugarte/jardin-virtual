@@ -1,7 +1,7 @@
 import {Navigate, Route, Routes} from "react-router-dom";
-import HomePage from "../pages/HomePage.jsx";
-import CategoriesPage from "../pages/CategoriesPage.jsx";
-import AboutPage from "../pages/AboutPage.jsx";
+import HomePage from "../components/home/HomePage.jsx";
+import CategoriesPage from "../components/categories/CategoriesPage.jsx";
+import AboutPage from "../components/about/AboutPage.jsx";
 
 export const AppRouter = () => {
 

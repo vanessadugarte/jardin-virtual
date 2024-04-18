@@ -15,10 +15,10 @@ import {
 import PropTypes from "prop-types";
 import MenuIcon from '@mui/icons-material/Menu';
 import {HiShoppingCart} from "react-icons/hi";
+import logo from "../assets/logo-jardinvirtual.png"
 
 const drawerWidth = 240;
-const Navbar = (props) => {
-    const {window} = props;
+const Navbar = ({window, handleCartView}) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [cartQuantity, setCartQuantity] = useState(3)
     const handleDrawerToggle = () => {
@@ -52,15 +52,6 @@ const Navbar = (props) => {
                     </ListItemButton>
                 </ListItem>
                 <Divider/>
-                <ListItem>
-                    <ListItemButton>
-                    <IconButton size="large" aria-label="show 4 new mails">
-                        <Badge badgeContent={cartQuantity} color="error" >
-                            <HiShoppingCart/>
-                        </Badge>
-                    </IconButton>
-                    </ListItemButton>
-                </ListItem>
             </List>
 
         </Box>
@@ -82,24 +73,33 @@ const Navbar = (props) => {
                     >
                         <MenuIcon/>
                     </IconButton>
+                    <img src={logo} alt="Logo"/>
+                    <Box sx={{mr: 2, display: {sm: 'none'}}}>
+                        <IconButton size="large" aria-label="show 4 new mails" onClick={handleCartView}>
+                            <Badge badgeContent={cartQuantity} color="error">
+                                <HiShoppingCart/>
+                            </Badge>
+                        </IconButton>
+                    </Box>
+
                     <Typography
                         variant="h6"
                         component="div"
                         sx={{flexGrow: 1, display: {xs: 'none', sm: 'flex'}}}
                     >
-                       JARDÍN VIRTUAL
+
                     </Typography>
                     <Box sx={{display: {xs: 'none', sm: 'block'}}}>
-                        <Button href="/home" sx={{color: '#fff',fontSize: '1.2rem', mr:2}}>
+                        <Button href="/home" sx={{color: '#fff', fontSize: '1.2rem', mr: 2}}>
                             Inicio
                         </Button>
-                        <Button href="/categories" sx={{color: '#fff',fontSize: '1.2rem', mr:2}}>
+                        <Button href="/categories" sx={{color: '#fff', fontSize: '1.2rem', mr: 2}}>
                             Categorías
                         </Button>
-                        <Button href="/about" sx={{color: '#fff',fontSize: '1.2rem', mr:2}}>
+                        <Button href="/about" sx={{color: '#fff', fontSize: '1.2rem', mr: 2}}>
                             Nosotros
                         </Button>
-                        <IconButton size="large" aria-label="show 4 new mails" sx={{color:"white"}}>
+                        <IconButton size="large" aria-label="show 4 new mails" sx={{color: "white"}} onClick={handleCartView}>
                             <Badge badgeContent={cartQuantity} color="error">
                                 <HiShoppingCart/>
                             </Badge>
@@ -123,10 +123,12 @@ const Navbar = (props) => {
                 >
                     {drawer}
                 </Drawer>
+
             </nav>
             <Box component="main" sx={{p: 3}}>
                 <Toolbar/>
             </Box>
+
         </Box>
     );
 };
