@@ -7,7 +7,7 @@ import {AppRouter} from "./router/AppRouter.jsx";
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
           <App>
-              <BrowserRouter>
+              <BrowserRouter basename="/jardin-virtual/">
                   <AppRouter/>
               </BrowserRouter>
           </App>
